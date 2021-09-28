@@ -4,16 +4,6 @@ import '../src/mode.dart';
 import '../src/common_modes.dart';
 
 final dart = Mode(refs: {
-  '~contains~4~starts~contains~1~contains~5': Mode(
-      className: "number",
-      variants: [
-        Mode(begin: "\\b(0[bB][01]+)n?"),
-        Mode(begin: "\\b(0[oO][0-7]+)n?"),
-        Mode(
-            begin:
-                "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)n?")
-      ],
-      relevance: 0),
   '~contains~0~variants~4~contains~2': Mode(
       className: "subst",
       variants: [Mode(begin: "\\\${", end: "}")],
@@ -51,7 +41,32 @@ final dart = Mode(refs: {
   "keyword":
       "required late abstract as assert async await break case catch class const continue covariant default deferred do dynamic else enum export extends extension external factory false final finally for Function get hide if implements import in inferface is library mixin new null on operator part rethrow return set show static super switch sync this throw true try typedef var void while with yield",
   "literal": "null false true",
-  "title":
+  "title": [
+        // Flutter
+        'BuildContext',
+        'Widget',
+        'StatelessWidget',
+        'StatefulWidget',
+        'BoxDecoration',
+        'Color',
+        'TextStyle',
+        'MaterialApp',
+        'Material',
+        'Scaffold',
+        'Provider',
+        'Provider',
+        'Radius',
+        'BorderRadius',
+        'Curves',
+        'Offset',
+        'Matrix4',
+        'Padding',
+        'EdgeInsets',
+        'Positioned',
+        'Container',
+        'Transform',
+        'Text',
+      ].join(' ') +
       "bool double dynamic int num Comparable DateTime Duration Function Iterable Iterator List Map Match Null Object Pattern RegExp Set Stopwatch String StringBuffer StringSink Symbol Type Uri print Element ElementList document querySelector querySelectorAll window"
 }, contains: [
   Mode(ref: '~contains~0'),
@@ -95,11 +110,6 @@ final dart = Mode(refs: {
       relevance: 0),
   Mode(
       begin: "[A-Z][a-zA-Z]*\\.",
-      returnBegin: true,
-      contains: [TITLE_MODE],
-      relevance: 0),
-  Mode(
-      begin: "(\\w|\\s)+[A-Z][a-zA-Z]*(\\w|\\s)+",
       returnBegin: true,
       contains: [TITLE_MODE],
       relevance: 0),
